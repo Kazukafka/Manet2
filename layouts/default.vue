@@ -1,9 +1,36 @@
 <template>
-  <div>
-    <nuxt />
+  <div class="app-layout">
+    <div class="sidebar">
+      <p>ALL Channels</p>
+      
+      <p v-for="channel in channels">
+        <nuxt-link :to="`/channels/${channel.id}`">{{ channel.name }}</nuxt-link>
+      </p>
+    </div>
+    <div class="main-content">
+      <nuxt />
+    </div>
   </div>
 </template>
-
+<script>
+import { db } from '~/plugins/firebase'
+export default {
+  data () {
+    return {
+      channels: []
+    }
+  },
+  mounted () {
+    db.collection('channels').get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          
+          this.channels.push({id: doc.id, ...doc.data()})
+        })
+      })
+  }
+}
+</script>
 <style>
 html {
   font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
@@ -16,14 +43,34 @@ html {
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
 }
-
 *,
 *:before,
 *:after {
   box-sizing: border-box;
   margin: 0;
 }
-
+.app-layout {
+  display: flex;
+}
+.sidebar {
+  width: 300px;
+  /* ここを変更 */
+  background: #4A4141;
+  height: 100vh;
+  padding: 20px;
+}
+.sidebar p {
+  color: #DDDDDD;
+  padding-top: 4px;
+}
+.sidebar a {
+  color: #DDDDDD;
+}
+.main-content {
+  width: 100%;
+  background: #F1F1F1;
+  height: 100vh;
+}
 .button--green {
   display: inline-block;
   border-radius: 4px;
@@ -32,12 +79,10 @@ html {
   text-decoration: none;
   padding: 10px 30px;
 }
-
 .button--green:hover {
   color: #fff;
   background-color: #3b8070;
 }
-
 .button--grey {
   display: inline-block;
   border-radius: 4px;
@@ -47,7 +92,6 @@ html {
   padding: 10px 30px;
   margin-left: 15px;
 }
-
 .button--grey:hover {
   color: #fff;
   background-color: #35495e;
