@@ -50,5 +50,6 @@ module.exports = {
     */
     extend (config, ctx) {
     }
-  }
+  },
+  telemetry: false
 }

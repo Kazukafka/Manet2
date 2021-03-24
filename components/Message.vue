@@ -1,23 +1,51 @@
 <template>
-  <div class="chats-container">
-    <message v-for="message in messages" :message="message"/>
+  <div class="chat-container">
+    <!-- <div class="thumbnail-container">
+      <img v-bind:src="message.user.thumbnail" />
+    </div> -->
+    <div class="message-container">
+      <!-- <div class="user-name">{{ displayName }}</div> -->
+      <div class="message">{{ message.text }}</div>
+    </div>
   </div>
 </template>
 
 <script>
-import Message from '~/components/Message'
 export default {
-  props: ['messages'],
-  components: {
-    Message
+  props: ['message'],
+  data() {
+    return {
+      message: {
+        text: "ABCD",
+        user: {
+          thumbnail: '~/assets/test.png',
+          name: 'note'
+        }
+      }
+    }
   },
-  mounted () {
-    console.log(this.messages)
+  computed: {
+    displayName() {
+      return `@${this.message.user.name}`
+    }
   }
 }
 </script>
-<style>
-.chats-container {
-  padding: 16px;
+
+<style scoped>
+.chat-container {
+  display: flex;
+  padding: 8px;
+}
+.thumbnail-container {
+  margin-right: 16px;
+}
+.thumbnail-container img {
+  width: 50px;
+  height: 50px;
+  border-radius: 10px;
+}
+.user-name {
+  font-weight: bold;
 }
 </style>
