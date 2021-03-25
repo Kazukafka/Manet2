@@ -49,6 +49,9 @@ export default {
     openLoginModal () {
          this.dialogVisible = true
     },
+
+
+    
     addMessage(event) {
       if (this.keyDownedForJPConversion(event)) { return }
       const channelId = this.$route.params.id
