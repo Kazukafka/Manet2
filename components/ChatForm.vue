@@ -65,6 +65,8 @@ export default {
        })
     },
     
+
+    
     loginFB ({ dispatch }) {
   var provider = new firebase.auth.FacebookAuthProvider()
   firebase.auth().signInWithPopup(provider).then(function (result) {
