@@ -2,6 +2,7 @@
   <div class="app-layout">
     <div class="sidebar">
       <p>ALL Channels</p>
+      <button>CreateNewChannel</button>
       
       <p v-for="channel in channels">
         <nuxt-link :to="`/channels/${channel.id}`">{{ channel.name }}</nuxt-link>
