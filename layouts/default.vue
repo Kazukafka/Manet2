@@ -55,7 +55,6 @@ html {
 }
 .sidebar {
   width: 300px;
-  /* ここを変更 */
   background: #4A4141;
   height: 100vh;
   padding: 20px;
