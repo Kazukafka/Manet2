@@ -1,4 +1,4 @@
-# slack-clone-app
+# TESTはAuthenticationのログイン確認まで
 
 > My phenomenal Nuxt.js project
 
