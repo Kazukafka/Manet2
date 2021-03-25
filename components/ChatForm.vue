@@ -1,6 +1,7 @@
 <template>
   <div class="input-container">
-    <textarea v-model="text" v-on:click="openLoginModal" v-on:keydown.enter="addMessage"></textarea>
+    <textarea v-model="text" v-if="isAuthenticated" v-on:keydown.enter="addMessage"></textarea>
+    <textarea v-model="text" v-else v-on:click="openLoginModal"></textarea>
        <el-dialog
         title=""
         :visible.sync="dialogVisible"
@@ -14,21 +15,25 @@
     </el-dialog>
   </div>
 </template>
-
 <script>
 import { db, firebase } from '~/plugins/firebase'
-
 import Vue from 'vue'
 import { mapActions } from 'vuex'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI)
+
 export default {
   data () {
     return {
-      dialogVisible: false,
+      dialogVisible: true,
       text: null
     }
+  },
+  computed: {
+   isAuthenticated() {
+     return this.$store.getters.isAuthenticated
+   }
   },
   mounted() {
     console.log(this.$store.state.user)
@@ -65,7 +70,6 @@ export default {
        })
     },
     
-
     
     loginFB ({ dispatch }) {
   var provider = new firebase.auth.FacebookAuthProvider()
@@ -87,7 +91,6 @@ export default {
 },
   }
 }
-
 export const mutations = {
  getData (state, payload) {
   state.user.uid = payload.uid
@@ -97,7 +100,6 @@ export const mutations = {
   state.user.login = true
  },
 }
-
 </script>
 <style scoped>
 .input-container {
@@ -108,12 +110,10 @@ textarea {
   width: 100%;
   height: 100%;
 }
-
 .image-container {
  display: flex;
  justify-content: center;
 }
-
 img {
  width: 70%;
  cursor: pointer;
