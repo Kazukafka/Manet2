@@ -2,12 +2,12 @@
   <div class="app-layout">
     <div class="sidebar">
       <p>ALL Channels</p>
-      <button>CreateNewChannel</button>
       
       <p v-for="channel in channels">
         <nuxt-link :to="`/channels/${channel.id}`">{{ channel.name }}</nuxt-link>
       </p>
 
+      <p v-on:click="addChannel">CreateNewChannel</p>
       <p v-if="isAuthenticated" class="logout" v-on:click="logout">Logout</p>
 
     </div>
@@ -25,24 +25,32 @@ export default {
       channels: []
     }
   },
- computed: {
+  computed: {
    isAuthenticated() {
      return this.$store.getters.isAuthenticated
    }
- },
+  },
   methods: {
     ...mapActions(['setUser']),
-   logout() {
-     firebase.auth().signOut()
-       .then(() => {
-         this.setUser(null)
-         window.alert('Logout DONE')
-       })
-       .catch((e) => {
-         window.alert('Logout Fail')
-         console.log(e)
-       })
-   }
+    logout() {
+      firebase.auth().signOut()
+      .then(() => {
+        this.setUser(null)
+        window.alert('Logout DONE')
+        })
+        .catch((e) => {
+          window.alert('Logout Fail')
+          console.log(e)
+        })
+    },
+    addChannel(event) {
+      db.collection('channels').add({ 
+        name: "ABC"
+      })
+        .then(() => {
+          this.text = "TEST"
+        })
+    },
   },
   mounted () {
     firebase.auth().onAuthStateChanged((user) => {
