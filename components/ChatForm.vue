@@ -10,10 +10,10 @@
         <div class="image-container">
           <img src="~/assets/google_sign_in.png" v-on:click="login"/>
         </div>
-       <div class="image-container">
-       <img src="~/assets/facebook_sign_in.png" v-on:click="loginFB"/>
-     </div>
-    </el-dialog>
+        <div class="image-container">
+          <img src="~/assets/facebook_sign_in.png" v-on:click="loginFB"/>
+        </div>
+        </el-dialog>
   </div>
 </template>
 <script>
@@ -73,6 +73,7 @@ export default {
         const user = result.user
         this.setUser(user)
         console.log(this.$store.state.user)
+        this.dialogVisible = false
        }).catch((error) => {
          window.alert(error)
        })
@@ -84,6 +85,7 @@ export default {
   firebase.auth().signInWithPopup(provider).then(function (result) {
     const user = result.user
         this.setUser(user)
+        this.dialogVisible = false
     dispatch('checkLogin')
   }).catch(function (error) {
     console.log(error)
