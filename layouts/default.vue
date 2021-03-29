@@ -8,7 +8,7 @@
         <nuxt-link :to="`/channels/${channel.id}`">{{ channel.name }}</nuxt-link>
       </p>
 
-      <p v-if="isAuthenticated" class="logout" v-on:click="logout">ログアウト</p>
+      <p v-if="isAuthenticated" class="logout" v-on:click="logout">Logout</p>
 
     </div>
     <div class="main-content">

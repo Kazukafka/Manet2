@@ -7,9 +7,9 @@
         title=""
         :visible.sync="dialogVisible"
         width="30%">
-      <div class="image-container">
-       <img src="~/assets/google_sign_in.png" v-on:click="login"/>
-       </div>
+        <div class="image-container">
+          <img src="~/assets/google_sign_in.png" v-on:click="login"/>
+        </div>
        <div class="image-container">
        <img src="~/assets/facebook_sign_in.png" v-on:click="loginFB"/>
      </div>
