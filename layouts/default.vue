@@ -5,6 +5,7 @@
       <p v-for="channel in channels">
         <nuxt-link :to="`/channels/${channel.id}`">{{ channel.name }}</nuxt-link>
       </p>
+      <p></p><p></p><p></p><p></p>
       <button v-if="isAuthenticated" class="create" v-on:click="addChannel">Create New Channel</button>
       <p v-if="isAuthenticated" class="logout" v-on:click="logout">Logout</p>
     </div>
@@ -12,9 +13,12 @@
       <nuxt />
     </div>
     <div class="sidebar-right">
-      <p>All Channels</p>
-      
+      <p class="sample">
+        <img src="~/assets/test.png" width="400" height="180">
+        <img src="~/assets/test.png" width="400" height="180">
+      </p>
     </div>
+    
   </div>
 </template>
 <script>
@@ -100,14 +104,14 @@ html {
   display: flex;
 }
 .sidebar {
-  width: 300px;
+  width: 400px;
   background: #228b22;
   height: 100vh;
   padding: 20px;
 }
 .sidebar p {
   color: #DDDDDD;
-  padding-top: 4px;
+  padding-top: 8px;
 }
 .sidebar a {
   color: #DDDDDD;
@@ -157,12 +161,24 @@ html {
   background-color: #35495e;
 }
 .logout {
+  font-size: 35px;
   position: absolute;
   bottom: 10px;
   cursor: pointer;
 }
 .create {
-  line-height: 10px;
-  cursor: pointer;
+  font-size: 20px;
+  position: absolute;
+  bottom: 100px;
+  display: inline-block;
+  border-radius: 30px;
+  border: 1px solid #3b8070;
+  color: #3b8070;
+  text-decoration: none;
+  padding: 3px 9px;
+}
+.sample img {
+    width: 300px;
+    height: auto;
 }
 </style>
