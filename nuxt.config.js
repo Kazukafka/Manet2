@@ -40,6 +40,12 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
+    [
+      '@nuxtjs/google-adsense',
+      {
+        id: 'ca-pub-###########'
+      }
+    ]
   ],
   /*
   ** Build configuration

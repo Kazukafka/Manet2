@@ -1,18 +1,19 @@
 <template>
   <div class="app-layout">
     <div class="sidebar">
-      <p>ALL Channels</p>
-      
+      <p>All Channels</p>
       <p v-for="channel in channels">
         <nuxt-link :to="`/channels/${channel.id}`">{{ channel.name }}</nuxt-link>
       </p>
-
-      <p v-on:click="addChannel">CreateNewChannel</p>
+      <button v-if="isAuthenticated" class="create" v-on:click="addChannel">Create New Channel</button>
       <p v-if="isAuthenticated" class="logout" v-on:click="logout">Logout</p>
-
     </div>
-    <div class="main-content">
+    <div class="main-content">  
       <nuxt />
+    </div>
+    <div class="sidebar-right">
+      <p>All Channels</p>
+      
     </div>
   </div>
 </template>
@@ -44,12 +45,17 @@ export default {
         })
     },
     addChannel(event) {
+      if (this.keyDownedForJPConversion(event)) { return }
       db.collection('channels').add({ 
         name: "ABC"
       })
         .then(() => {
           this.text = "TEST"
         })
+    },
+    keyDownedForJPConversion (event) {
+      const codeForConversion = 229
+      return event.keyCode === codeForConversion
     },
   },
   mounted () {
@@ -65,8 +71,7 @@ export default {
     })
     db.collection('channels').get()
       .then((querySnapshot) => {
-        querySnapshot.forEach((doc) => {
-          
+        querySnapshot.forEach((doc) => {          
           this.channels.push({id: doc.id, ...doc.data()})
         })
       })
@@ -96,7 +101,7 @@ html {
 }
 .sidebar {
   width: 300px;
-  background: #4A4141;
+  background: #228b22;
   height: 100vh;
   padding: 20px;
 }
@@ -105,6 +110,20 @@ html {
   padding-top: 4px;
 }
 .sidebar a {
+  color: #DDDDDD;
+}
+
+.sidebar-right {
+  width: 500px;
+  background: #696969;
+  height: 100vh;
+  padding: 20px;
+}
+.sidebar-right p {
+  color: #DDDDDD;
+  padding-top: 4px;
+}
+.sidebar-right a {
   color: #DDDDDD;
 }
 .main-content {
@@ -140,6 +159,10 @@ html {
 .logout {
   position: absolute;
   bottom: 10px;
+  cursor: pointer;
+}
+.create {
+  line-height: 10px;
   cursor: pointer;
 }
 </style>
