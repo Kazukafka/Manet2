@@ -1,8 +1,8 @@
 <template>
   <div class="input-container">
     <img v-if="isAuthenticated" :src="user.photoURL" class="avatar">
-    <textarea v-model="text" v-if="isAuthenticated" v-on:keydown.enter="addMessage"></textarea>
-    <textarea v-model="text" v-else v-on:click="openLoginModal"></textarea>
+   <textarea v-model="text" v-if="isAuthenticated" v-on:keydown.enter="addMessage"></textarea>
+   <textarea v-model="text" v-else v-on:click="openLoginModal"></textarea>
        <el-dialog
         title=""
         :visible.sync="dialogVisible"
@@ -23,11 +23,10 @@ import { mapActions } from 'vuex'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(ElementUI)
-
 export default {
   data () {
     return {
-      dialogVisible: true,
+      dialogVisible: false,
       text: null
     }
   },
@@ -45,7 +44,7 @@ export default {
   methods: {
     ...mapActions(['setUser']),
     openLoginModal () {
-         this.dialogVisible = false
+         this.dialogVisible = true
     },
     addMessage(event) {
       if (this.keyDownedForJPConversion(event)) { return }
@@ -71,34 +70,36 @@ export default {
      firebase.auth().signInWithPopup(provider)
      .then((result) => {
         const user = result.user
+        window.alert('Login OK')
         this.setUser(user)
         console.log(this.$store.state.user)
         this.dialogVisible = false
        }).catch((error) => {
-         window.alert(error)
+         window.alert('FAIL')
        })
     },
     
     
     loginFB ({ dispatch }) {
-  var provider = new firebase.auth.FacebookAuthProvider()
-  firebase.auth().signInWithPopup(provider).then(function (result) {
-    const user = result.user
+      var provider = new firebase.auth.FacebookAuthProvider()
+      firebase.auth().signInWithPopup(provider).then(function (result) {
+        const user = result.user
         this.setUser(user)
+        window.alert('Login OK')
         this.dialogVisible = false
-    dispatch('checkLogin')
-  }).catch(function (error) {
-    console.log(error)
-  })
-},
- checkLogin ({ commit }) {
-  firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-      commit('getData', { uid: user.uid, email: user.email })
-      commit('switchLogin')
-    }
-  })
-},
+        dispatch('checkLogin')
+      }).catch(function (error) {
+        console.log(error)
+      })
+    },
+    checkLogin ({ commit }) {
+      firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+          commit('getData', { uid: user.uid, email: user.email })
+          commit('switchLogin')
+        }
+      })
+    },
   }
 }
 export const mutations = {

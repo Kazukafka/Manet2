@@ -14,13 +14,15 @@
     </div>
     <div class="sidebar-right">
       <p class="sample">
-        <img src="~/assets/test.png" width="400" height="180">
-        <img src="~/assets/test.png" width="400" height="180">
-      </p>
+        <div class="slide">
+          <img src="~/assets/SampleAd1.png" width="370" height="370">
+          <img src="~/assets/SampleAd2.png" width="370" height="370">
+        </div>
     </div>
     
   </div>
 </template>
+
 <script>
 import { db, firebase } from '~/plugins/firebase'
 import { mapActions } from 'vuex'
@@ -180,5 +182,8 @@ html {
 .sample img {
     width: 300px;
     height: auto;
+    position: relative;
+    overflow: hidden;
 }
+
 </style>
