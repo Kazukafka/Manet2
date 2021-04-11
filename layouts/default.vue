@@ -7,8 +7,9 @@
         <nuxt-link :to="`/channels/${channel.id}`">{{ channel.name }}</nuxt-link>
       </p>
       <div class="wrap">
-        <input class="content1" v-model="text" v-if="isAuthenticated" v-on:keydown.enter="addMessage">
+        <input class="content1" v-model="textInput" v-if="isAuthenticated" placeholder="Input team name">
         <button class="content2" v-if="isAuthenticated" v-on:click="addChannel">Create New Channel</button>
+        
       </div>
       
       <p v-if="isAuthenticated" class="logout" v-on:click="logout">Logout</p>
@@ -58,8 +59,9 @@ export default {
     },
     addChannel(event) {
       if (this.keyDownedForJPConversion(event)) { return }
+      this.$router.go({path: this.$router.currentRoute.path, force: true})
       db.collection('channels').add({ 
-        name: "ABC"
+        name: this.textInput
       })
         .then(() => {
           this.text = "TEST"
