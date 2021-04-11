@@ -8,18 +8,22 @@
       </p>
       <div class="wrap">
         <input class="content1" v-model="textInput" v-if="isAuthenticated" placeholder="Input team name">
-        <button class="content2" v-if="isAuthenticated" v-on:click="addChannel">Create New Channel</button>
-        
+        <button class="content2" v-if="isAuthenticated" v-on:click="addChannel">Create New Channel</button>   
       </div>
-      
-      <p v-if="isAuthenticated" class="logout" v-on:click="logout">Logout</p>
-      
+      <p v-if="isAuthenticated" class="logout" v-on:click="logout">Logout</p> 
       
     </div>
     <div class="main-content">  
       <nuxt />
     </div>
     <div class="sidebar-right">
+      <div class="slide" id="makeImg">
+        <img src="@/assets/bear.png"   alt="くま">
+        <img src="@/assets/cat.png"    alt="ねこ">
+        <img src="@/assets/cow.png"    alt="うし">
+        <img src="@/assets/dog.png"    alt="いぬ">
+        <img src="@/assets/mouse.png"  alt="ねずみ">
+      </div>
       <div class="slide" id="makeImg">
         <img src="@/assets/bear.png"   alt="くま">
         <img src="@/assets/cat.png"    alt="ねこ">
@@ -236,30 +240,26 @@ html {
 .slide {
   position   : relative;
   overflow   : hidden;
-                    /* 画像のサイズに合わせて変更ください */
-  width      : 200px;
-  height     : 200px;
-  margin     : auto;      /* サンプルは中央寄せの背景：白 */
+  width      : 300px;
+  height     : 300px;
+  margin     : auto;
   background : #fff;
 }
  
- /*=== 画像の設定 ======================================= */
 .slide img {
   display    : block;
   position   : absolute;
-                      /* 画像のサイズを表示エリアに合せる */
   width      : inherit;
   height     : inherit;
   opacity    : 0;
   animation  : slideAnime 15s ease infinite;
 }
- 
- /*=== スライドのアニメーションを段差で開始する ========= */
+
 .slide img:nth-of-type(1) { animation-delay: 0s }
-.slide img:nth-of-type(2) { animation-delay: 3s }
-.slide img:nth-of-type(3) { animation-delay: 6s }
-.slide img:nth-of-type(4) { animation-delay: 9s }
-.slide img:nth-of-type(5) { animation-delay: 12s }
+.slide img:nth-of-type(2) { animation-delay: 6s }
+.slide img:nth-of-type(3) { animation-delay: 12s }
+.slide img:nth-of-type(4) { animation-delay: 18s }
+.slide img:nth-of-type(5) { animation-delay: 24s }
  
  /*=== スライドのアニメーション ========================= */
 @keyframes slideAnime{

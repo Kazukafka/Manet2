@@ -5,7 +5,10 @@
    </div>
     <div class="message-container">
      <div class="user-name">{{ displayName }}</div>
-      <div class="message">{{ message.text }}</div>
+     <div class="boxContainer">
+       <div class="box">{{ message.text }}</div>
+       <button class="box" v-if="isAuthenticated">Edit</button>
+     </div>
     </div>
   </div>
 </template>
@@ -27,7 +30,10 @@ export default {
   computed: {
     displayName() {
       return `@${this.message.user.name}`
-    }
+    },
+    isAuthenticated() {
+     return this.$store.getters.isAuthenticated
+   }
   }
 }
 </script>
@@ -48,4 +54,14 @@ export default {
 .user-name {
   font-weight: bold;
 }
+.edit {
+  font-weight: bold;
+}
+.boxContainer{
+  overflow: hidden;
+}
+.box{
+  float: left;
+}
+
 </style>
