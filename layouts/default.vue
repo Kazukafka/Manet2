@@ -1,13 +1,19 @@
 <template>
-  <div class="app-layout">
+  <div class="app-layout"> 
+     
     <div class="sidebar">
       <p>All Channels</p>
       <p v-for="channel in channels">
         <nuxt-link :to="`/channels/${channel.id}`">{{ channel.name }}</nuxt-link>
       </p>
-      <p></p><p></p><p></p><p></p>
-      <button v-if="isAuthenticated" class="create" v-on:click="addChannel">Create New Channel</button>
+      <div class="wrap">
+        <input class="content1" v-model="text" v-if="isAuthenticated" v-on:keydown.enter="addMessage">
+        <button class="content2" v-if="isAuthenticated" v-on:click="addChannel">Create New Channel</button>
+      </div>
+      
       <p v-if="isAuthenticated" class="logout" v-on:click="logout">Logout</p>
+      
+      
     </div>
     <div class="main-content">  
       <nuxt />
@@ -184,6 +190,43 @@ html {
     height: auto;
     position: relative;
     overflow: hidden;
+}
+
+.wrap {
+  position: absolute;
+  bottom: 100px;
+  display:flex;
+  flex-flow: column;
+}
+.content1 {
+  font-size: 15px;
+  display: inline-block;
+  border-radius: 30px;
+  border: 1px solid #3b8070;
+  color: #3b8070;
+  text-decoration: none;
+  padding: 3px 9px;
+}
+.content2 {
+  font-size: 15px;
+  display: inline-block;
+  border-radius: 30px;
+  border: 1px solid #3b8070;
+  color: #3b8070;
+  text-decoration: none;
+  padding: 3px 9px;
+}
+
+.content3 {
+  font-size: 20px;
+  position: absolute;
+  bottom: 100px;
+  display: inline-block;
+  border-radius: 30px;
+  border: 1px solid #3b8070;
+  color: #3b8070;
+  text-decoration: none;
+  padding: 3px 9px;
 }
 
 </style>
