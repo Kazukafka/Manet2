@@ -6,7 +6,8 @@
     <div class="message-container">
      <div class="user-name">{{ displayName }}</div>
      <div class="boxContainer">
-       <div class="box">{{ message.text }}</div>
+       <div class="box1">{{ message.text }}</div>
+       <p></p>
        <button class="box" v-if="isAuthenticated">Edit</button>
      </div>
     </div>
@@ -61,7 +62,13 @@ export default {
   overflow: hidden;
 }
 .box{
+  float: right;
+  font-size: 10px;
+  color: grey;
+}
+.box1{
   float: left;
+  font-size: 25px;
 }
 
 </style>
