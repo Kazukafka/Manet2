@@ -9,6 +9,7 @@
        <div class="box1">{{ message.text }}</div>
        <p></p>
        <button class="box" v-if="isAuthenticated">Edit</button>
+       <button class="box2" v-if="isAuthenticated" v-on:click="deleteMessage">Delete</button>
      </div>
     </div>
   </div>
@@ -34,6 +35,28 @@ export default {
     },
     isAuthenticated() {
      return this.$store.getters.isAuthenticated
+   },
+   methods: {
+     addMessage(event) {
+      if (this.keyDownedForJPConversion(event)) { return }
+      const channelId = this.$route.params.id
+      db.collection('channels').doc(channelId).collection('messages').add({ 
+        text: this.text,
+        createdAt: new Date().getTime(),
+        user: {
+          name: this.user.displayName,
+          thumbnail: this.user.photoURL
+        }
+      })
+        .then(() => {
+          this.text = null
+        })
+    },
+    deleteMessage(event) {
+      if (this.keyDownedForJPConversion(event)) { return }
+      const channelId = this.$route.params.id
+      db.collection('channels').doc(channelId).collection('messages').delete()
+    },
    }
   }
 }
@@ -68,7 +91,13 @@ export default {
 }
 .box1{
   float: left;
-  font-size: 25px;
+  font-size: 15px;
 }
+.box2{
+  float: right;
+  font-size: 10px;
+  color: orange;
+}
+
 
 </style>

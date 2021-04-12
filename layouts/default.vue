@@ -5,6 +5,8 @@
       <p>All Channels</p>
       <p v-for="channel in channels">
         <nuxt-link :to="`/channels/${channel.id}`">{{ channel.name }}</nuxt-link>
+        
+       <button class="box2" v-if="isAuthenticated" v-on:click="deleteChannel">Delete</button>
       </p>
       <div class="wrap">
         <input class="content1" v-model="textInput" v-if="isAuthenticated" placeholder="Input team name">
@@ -25,7 +27,7 @@
         <img src="@/assets/mouse.png"  alt="ねずみ">
       </div>
       <div class="slide" id="makeImg">
-        <img src="@/assets/bear.png"   alt="くま">
+        <img src="@/assets/yuzuki.png"   alt="くま">
         <img src="@/assets/cat.png"    alt="ねこ">
         <img src="@/assets/cow.png"    alt="うし">
         <img src="@/assets/dog.png"    alt="いぬ">
@@ -72,6 +74,11 @@ export default {
         .then(() => {
           this.text = "TEST"
         })
+    },
+    deleteChannel(event) {
+      if (this.keyDownedForJPConversion(event)) { return }
+      const channelId = this.$route.params.id
+      db.collection('channels').doc(channelId).delete()
     },
     keyDownedForJPConversion (event) {
       const codeForConversion = 229
@@ -243,7 +250,6 @@ html {
   width      : 300px;
   height     : 300px;
   margin     : auto;
-  background : #fff;
 }
  
 .slide img {
@@ -254,19 +260,21 @@ html {
   opacity    : 0;
   animation  : slideAnime 15s ease infinite;
 }
-
 .slide img:nth-of-type(1) { animation-delay: 0s }
 .slide img:nth-of-type(2) { animation-delay: 6s }
 .slide img:nth-of-type(3) { animation-delay: 12s }
 .slide img:nth-of-type(4) { animation-delay: 18s }
 .slide img:nth-of-type(5) { animation-delay: 24s }
- 
- /*=== スライドのアニメーション ========================= */
 @keyframes slideAnime{
    0% { opacity: 0; transform: scale(.1, .1)}
    2% { opacity: 1; transform: scale(1, 1)  }
   18% { opacity: 1; transform: scale(1, 1)  }
   20% { opacity: 0; transform: scale(2, 2)  }
  100% { opacity: 0; transform: scale(2, 2)  }
+}
+.box2{
+  float: right;
+  font-size: 10px;
+  color: orange;
 }
 </style>
