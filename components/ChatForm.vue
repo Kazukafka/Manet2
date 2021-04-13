@@ -1,6 +1,6 @@
 <template>
   <div class="input-container">
-    <img v-if="isAuthenticated" :src="user.photoURL" class="avatar">
+  <img v-if="isAuthenticated" :src="user.photoURL" class="avatar">
    <textarea v-model="text" v-if="isAuthenticated" v-on:keydown.enter="addMessage"></textarea>
    <textarea v-model="text" v-else v-on:click="openLoginModal"></textarea>
        <el-dialog
@@ -11,9 +11,10 @@
           <img src="~/assets/google_sign_in.png" v-on:click="login"/>
         </div>
         <div class="image-container">
-          <img src="~/assets/facebook_sign_in.png" v-on:click="loginFB"/>
+          <img src="~/assets/facebook_sign_in.png" v-on:click="loginFB2"/>
         </div>
         </el-dialog>
+        <button class="box2" v-if="isAuthenticated" v-on:click="deleteChannel">Delete</button>
   </div>
 </template>
 <script>
@@ -27,7 +28,8 @@ export default {
   data () {
     return {
       dialogVisible: false,
-      text: null
+      text: null,
+      channels: []
     }
   },
   computed: {
@@ -44,12 +46,15 @@ export default {
   methods: {
     ...mapActions(['setUser']),
     openLoginModal () {
-         this.dialogVisible = true
+      this.dialogVisible = true
     },
     addMessage(event) {
       if (this.keyDownedForJPConversion(event)) { return }
       const channelId = this.$route.params.id
-      db.collection('channels').doc(channelId).collection('messages').add({ 
+      if (this.text === null){
+        window.alert('Your TEXT is Null')
+      } else {
+        db.collection('channels').doc(channelId).collection('messages').add({ 
         text: this.text,
         createdAt: new Date().getTime(),
         user: {
@@ -57,9 +62,13 @@ export default {
           thumbnail: this.user.photoURL
         }
       })
-        .then(() => {
-          this.text = null
-        })
+      }
+    },
+
+    deleteChannel(event) {
+      if (this.keyDownedForJPConversion(event)) { return }
+      const channelId = this.$route.params.id
+      db.collection('channels').doc(channelId).delete()
     },
     keyDownedForJPConversion (event) {
       const codeForConversion = 229
@@ -78,14 +87,29 @@ export default {
          window.alert('FAIL')
        })
     },
+
+    loginFB2() {
+     const provider = new firebase.auth.FacebookAuthProvider()
+     firebase.auth().signInWithPopup(provider)
+     .then((result) => {
+        const user = result.user
+        window.alert('Login OK')
+        this.setUser(user)
+        console.log(this.$store.state.user)
+        this.dialogVisible = false
+       }).catch((error) => {
+         window.alert('FAIL')
+       })
+    },
     
     
     loginFB ({ dispatch }) {
       var provider = new firebase.auth.FacebookAuthProvider()
       firebase.auth().signInWithPopup(provider).then(function (result) {
         const user = result.user
-        this.setUser(user)
         window.alert('Login OK')
+        this.setUser(user)
+        console.log(this.$store.state.user)
         this.dialogVisible = false
         dispatch('checkLogin')
       }).catch(function (error) {
@@ -134,5 +158,11 @@ textarea {
 img {
  width: 70%;
  cursor: pointer;
+}
+
+.box2{
+  float: right;
+  font-size: 10px;
+  color: black;
 }
 </style>

@@ -1,5 +1,6 @@
 <template>
  <div class="chats-container">
+   <p></p>
    <message v-for="message in messages" :message="message"/>
  </div>
 </template>
@@ -7,6 +8,11 @@
 <script>
 import Message from '~/components/Message'
 export default {
+  data () {
+    return {
+      channels: []
+    }
+  },
   props: ['messages'],
   components: {
     Message

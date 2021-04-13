@@ -2,11 +2,9 @@
   <div class="app-layout"> 
      
     <div class="sidebar">
-      <p>All Channels</p>
+      <p class="allChannels">All Channels</p>
       <p v-for="channel in channels">
         <nuxt-link :to="`/channels/${channel.id}`">{{ channel.name }}</nuxt-link>
-        
-       <button class="box2" v-if="isAuthenticated" v-on:click="deleteChannel">Delete</button>
       </p>
       <div class="wrap">
         <input class="content1" v-model="textInput" v-if="isAuthenticated" placeholder="Input team name">
@@ -54,6 +52,9 @@ export default {
   },
   methods: {
     ...mapActions(['setUser']),
+    openClick () {
+      this.dialogVisible = false
+    },
     logout() {
       firebase.auth().signOut()
       .then(() => {
@@ -276,5 +277,8 @@ html {
   float: right;
   font-size: 10px;
   color: orange;
+}
+.allChannels{
+  font-size: 25px;
 }
 </style>

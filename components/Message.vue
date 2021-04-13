@@ -1,5 +1,6 @@
 <template>
-  <div class="chat-container">
+  <div v-if="isAuthenticated" class="chat-container">
+    <p>TEST</p>
    <div class="thumbnail-container">
       <img v-bind:src="message.user.thumbnail" />
    </div>
@@ -8,8 +9,6 @@
      <div class="boxContainer">
        <div class="box1">{{ message.text }}</div>
        <p></p>
-       <button class="box" v-if="isAuthenticated">Edit</button>
-       <button class="box2" v-if="isAuthenticated" v-on:click="deleteMessage">Delete</button>
      </div>
     </div>
   </div>
@@ -52,11 +51,6 @@ export default {
           this.text = null
         })
     },
-    deleteMessage(event) {
-      if (this.keyDownedForJPConversion(event)) { return }
-      const channelId = this.$route.params.id
-      db.collection('channels').doc(channelId).collection('messages').delete()
-    },
    }
   }
 }
@@ -91,7 +85,7 @@ export default {
 }
 .box1{
   float: left;
-  font-size: 15px;
+  font-size: 18px;
 }
 .box2{
   float: right;
