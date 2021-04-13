@@ -3,6 +3,7 @@
   <img v-if="isAuthenticated" :src="user.photoURL" class="avatar">
    <textarea v-model="text" v-if="isAuthenticated" v-on:keydown.enter="addMessage"></textarea>
    <textarea v-model="text" v-else v-on:click="openLoginModal"></textarea>
+   <button class="box2" v-if="isAuthenticated" v-on:click="addSmile">😁</button>
        <el-dialog
         title=""
         :visible.sync="dialogVisible"
@@ -64,6 +65,35 @@ export default {
        this.text = null
      })
       }
+    },
+    addMessage(event) {
+      if (this.keyDownedForJPConversion(event)) { return }
+      const channelId = this.$route.params.id
+      if (this.text === null){
+        window.alert('Your TEXT is Null')
+      } else {
+        db.collection('channels').doc(channelId).collection('messages').add({ 
+        text: this.text,
+        createdAt: new Date().getTime(),
+        user: {
+          name: this.user.displayName,
+          thumbnail: this.user.photoURL
+        }
+      }).then(() => {
+       this.text = null
+     })
+      }
+    },
+    addSmile(event) {
+      if (this.keyDownedForJPConversion(event)) { return }
+      const channelId = this.$route.params.id
+      db.collection('channels').doc(channelId).collection('messages').add({ 
+        text: '😁',
+        createdAt: new Date().getTime(),
+        user: {
+          name: this.user.displayName,
+          thumbnail: this.user.photoURL
+        }})
     },
 
     deleteChannel(event) {
