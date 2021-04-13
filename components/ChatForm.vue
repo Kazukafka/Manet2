@@ -3,7 +3,12 @@
   <img v-if="isAuthenticated" :src="user.photoURL" class="avatar">
    <textarea v-model="text" v-if="isAuthenticated" v-on:keydown.enter="addMessage"></textarea>
    <textarea v-model="text" v-else v-on:click="openLoginModal"></textarea>
-   <button class="box2" v-if="isAuthenticated" v-on:click="addSmile">😁</button>
+   <table class="box2">
+     <tr>
+       <td><button class="box2" v-on:click="addSmile">😁</button></td>
+       <td><button class="box2" v-on:click="addUmmm">🤨</button></td>
+      </tr>
+  </table>
        <el-dialog
         title=""
         :visible.sync="dialogVisible"
@@ -66,29 +71,24 @@ export default {
      })
       }
     },
-    addMessage(event) {
-      if (this.keyDownedForJPConversion(event)) { return }
-      const channelId = this.$route.params.id
-      if (this.text === null){
-        window.alert('Your TEXT is Null')
-      } else {
-        db.collection('channels').doc(channelId).collection('messages').add({ 
-        text: this.text,
-        createdAt: new Date().getTime(),
-        user: {
-          name: this.user.displayName,
-          thumbnail: this.user.photoURL
-        }
-      }).then(() => {
-       this.text = null
-     })
-      }
-    },
+    
     addSmile(event) {
       if (this.keyDownedForJPConversion(event)) { return }
       const channelId = this.$route.params.id
       db.collection('channels').doc(channelId).collection('messages').add({ 
         text: '😁',
+        createdAt: new Date().getTime(),
+        user: {
+          name: this.user.displayName,
+          thumbnail: this.user.photoURL
+        }})
+    },
+
+    addUmmm(event) {
+      if (this.keyDownedForJPConversion(event)) { return }
+      const channelId = this.$route.params.id
+      db.collection('channels').doc(channelId).collection('messages').add({ 
+        text: '🤨',
         createdAt: new Date().getTime(),
         user: {
           name: this.user.displayName,
@@ -194,7 +194,51 @@ img {
 
 .box2{
   float: right;
-  font-size: 10px;
+  font-size: 30px;
   color: black;
+}
+
+.rect-wrap {
+  width: 50% ;
+}
+.rect {
+  width : 100% ;
+  padding-top : 100% ;
+  background-color: #29d632;
+}
+li{
+  list-style:none;
+  background-color:#73BDFA;
+  padding: 8px;
+  margin:4px
+}
+.flex-container{
+		display:flex;
+}
+
+.my-parts {
+	display: inline-block;
+	font-size: 16px;
+	padding: .8em 1.6em .4em .8em;
+	position: relative;
+	color: #fff;
+	z-index: 1;
+}
+.my-parts::before {
+	content: "";
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: -1;
+	background: #01579B;
+	transform: scaleY(1.3) perspective(.6em) rotateX(5deg);
+	transform-origin: bottom left;
+	border-radius: 8px 8px 0 0;
+}
+
+table{
+margin:auto;
 }
 </style>

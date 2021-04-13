@@ -2,13 +2,15 @@
   <div class="app-layout"> 
      
     <div class="sidebar">
-      <p class="allChannels">All Channels</p>
+      <p class="allChannels"><a href="http://localhost:3000/channels/">All Channels</a></p>
+      <ul>
       <p v-for="channel in channels">
-        <nuxt-link class="allChannels" no-prefetch="" :to="`/channels/${channel.id}`">
+        <nuxt-link class="allChannels2" no-prefetch="" :to="`/channels/${channel.id}`">
         {{ channel.name }} 
         <button class="box2" v-if="isAuthenticated" v-on:click="deleteChannel">Delete</button>
         </nuxt-link>
       </p>
+      </ul>
       <div class="wrap">
         <input class="content1" v-model="textInput" v-if="isAuthenticated" placeholder="Input team name">
         <button class="content2" v-if="isAuthenticated" v-on:click="addChannel">Create New Channel</button>   
@@ -284,5 +286,8 @@ html {
 }
 .allChannels{
   font-size: 25px;
+}
+.allChannels2{
+  font-size: 20px;
 }
 </style>
