@@ -1,6 +1,5 @@
 <template>
   <div v-if="isAuthenticated" class="chat-container">
-    <p>TEST</p>
    <div class="thumbnail-container">
       <img v-bind:src="message.user.thumbnail" />
    </div>
@@ -33,7 +32,7 @@ export default {
       return `@${this.message.user.name}`
     },
     isAuthenticated() {
-     return this.$store.getters.isAuthenticated
+      return this.$store.getters.isAuthenticated
    },
    methods: {
      addMessage(event) {

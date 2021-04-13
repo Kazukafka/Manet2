@@ -4,7 +4,10 @@
     <div class="sidebar">
       <p class="allChannels">All Channels</p>
       <p v-for="channel in channels">
-        <nuxt-link :to="`/channels/${channel.id}`">{{ channel.name }}</nuxt-link>
+        <nuxt-link class="allChannels" no-prefetch="" :to="`/channels/${channel.id}`">
+        {{ channel.name }} 
+        <button class="box2" v-if="isAuthenticated" v-on:click="deleteChannel">Delete</button>
+        </nuxt-link>
       </p>
       <div class="wrap">
         <input class="content1" v-model="textInput" v-if="isAuthenticated" placeholder="Input team name">

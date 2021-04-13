@@ -14,7 +14,6 @@
           <img src="~/assets/facebook_sign_in.png" v-on:click="loginFB2"/>
         </div>
         </el-dialog>
-        <button class="box2" v-if="isAuthenticated" v-on:click="deleteChannel">Delete</button>
   </div>
 </template>
 <script>
@@ -61,13 +60,16 @@ export default {
           name: this.user.displayName,
           thumbnail: this.user.photoURL
         }
-      })
+      }).then(() => {
+       this.text = null
+     })
       }
     },
 
     deleteChannel(event) {
       if (this.keyDownedForJPConversion(event)) { return }
       const channelId = this.$route.params.id
+      this.$router.go({path: this.$router.currentRoute.path, force: true})
       db.collection('channels').doc(channelId).delete()
     },
     keyDownedForJPConversion (event) {
