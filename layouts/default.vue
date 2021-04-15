@@ -2,7 +2,8 @@
   <div class="app-layout"> 
      
     <div class="sidebar">
-      <p class="allChannels"><a href="http://localhost:3000/channels/">All Channels</a></p>
+      <router-link to="/">Home</router-link>
+      <p class="allChannels">All Channels</p>
       <ul>
       <p v-for="channel in channels">
         <nuxt-link class="allChannels2" no-prefetch="" :to="`/channels/${channel.id}`">
@@ -73,19 +74,21 @@ export default {
     },
     addChannel(event) {
       if (this.keyDownedForJPConversion(event)) { return }
-      this.$router.go({path: this.$router.currentRoute.path, force: true})
+      
       db.collection('channels').add({ 
         name: this.textInput
       })
         .then(() => {
           this.text = "TEST"
         })
+      const channelId = this.$route.params.id
+      this.$router.go({path: this.$router.currentRoute.path, force: true})
     },
     deleteChannel(event) {
       if (this.keyDownedForJPConversion(event)) { return }
       const channelId = this.$route.params.id
       db.collection('channels').doc(channelId).delete()
-      this.$router.go({path: this.$router.currentRoute.path, force: true})
+      this.$router.go({path: this.$router.currentRoute.path, force: false})
     },
     keyDownedForJPConversion (event) {
       const codeForConversion = 229
@@ -289,5 +292,9 @@ html {
 }
 .allChannels2{
   font-size: 20px;
+}
+.manet2 {  
+    font-size: 25px;
+    font-family: cursive; 
 }
 </style>
