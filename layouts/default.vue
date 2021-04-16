@@ -24,18 +24,18 @@
     </div>
     <div class="sidebar-right">
       <div class="slide" id="makeImg">
-        <img src="@/assets/bear.png"   alt="くま">
-        <img src="@/assets/cat.png"    alt="ねこ">
-        <img src="@/assets/cow.png"    alt="うし">
-        <img src="@/assets/dog.png"    alt="いぬ">
-        <img src="@/assets/mouse.png"  alt="ねずみ">
+        <img src="@/assets/ad1.png"   alt="くま">
+        <img src="@/assets/ad2.png"    alt="ねこ">
+        <img src="@/assets/ad3.png"    alt="うし">
+        <img src="@/assets/ad4.png"    alt="いぬ">
+        <img src="@/assets/ad5.png"  alt="ねずみ">
       </div>
       <div class="slide" id="makeImg">
-        <img src="@/assets/yuzuki.png"   alt="くま">
-        <img src="@/assets/cat.png"    alt="ねこ">
-        <img src="@/assets/cow.png"    alt="うし">
-        <img src="@/assets/dog.png"    alt="いぬ">
-        <img src="@/assets/mouse.png"  alt="ねずみ">
+        <img src="@/assets/ad6.png"   alt="くま">
+        <img src="@/assets/ad7.png"    alt="ねこ">
+        <img src="@/assets/ad8.png"    alt="うし">
+        <img src="@/assets/ad9.png"    alt="いぬ">
+        <img src="@/assets/ad10.png"  alt="ねずみ">
       </div>
     </div>
     
@@ -74,21 +74,19 @@ export default {
     },
     addChannel(event) {
       if (this.keyDownedForJPConversion(event)) { return }
-      
+      const channelId = this.$route.params.id
       db.collection('channels').add({ 
         name: this.textInput
-      })
-        .then(() => {
-          this.text = "TEST"
-        })
-      const channelId = this.$route.params.id
-      this.$router.go({path: this.$router.currentRoute.path, force: true})
+      }).then(() => {
+       this.text = null
+     })
+      //this.$router.go({path: this.$router.currentRoute.path, force: true})
     },
     deleteChannel(event) {
       if (this.keyDownedForJPConversion(event)) { return }
       const channelId = this.$route.params.id
       db.collection('channels').doc(channelId).delete()
-      this.$router.go({path: this.$router.currentRoute.path, force: false})
+      //this.$router.go({path: this.$router.currentRoute.path, force: false})
     },
     keyDownedForJPConversion (event) {
       const codeForConversion = 229
@@ -112,6 +110,7 @@ export default {
           this.channels.push({id: doc.id, ...doc.data()})
         })
       })
+   
   }
 }
 </script>
@@ -268,7 +267,7 @@ html {
   width      : inherit;
   height     : inherit;
   opacity    : 0;
-  animation  : slideAnime 15s ease infinite;
+  animation  : slideAnime 20s ease infinite;
 }
 .slide img:nth-of-type(1) { animation-delay: 0s }
 .slide img:nth-of-type(2) { animation-delay: 6s }

@@ -1,9 +1,5 @@
 <template>
  <div class="chats-container">
-   <p v-for="channel in filteredUsers" :key="channel.id">
-     
-        {{ channel.name }}{{ channel.id }}
-      </p>
    <message v-for="message in messages" :message="message"/>
  </div>
 </template>
@@ -14,6 +10,7 @@ import { db, firebase } from '~/plugins/firebase'
 export default {
   data () {
     return {
+      mchannels: [],
       channels: []
     }
   },
