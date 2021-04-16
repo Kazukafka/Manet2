@@ -92,13 +92,7 @@ export default {
       if (this.keyDownedForJPConversion(event)) { return }
       const channelId = this.$route.params.id
       db.collection('channels').doc(channelId).delete()
-      this.$router.go({path: this.$router.currentRoute.path, force: false})
-    },
-    deleteChannels(event) {
-      if (this.keyDownedForJPConversion(event)) { return }
-      const channelId = this.$route.params.id
-      db.collection('channels').doc(channelId).delete()
-      this.$router.go({path: '/', force: false})
+      //this.$router.go({path: this.$router.currentRoute.path, force: false})
     },
     keyDownedForJPConversion (event) {
       const codeForConversion = 229
