@@ -8,13 +8,16 @@
       <p v-for="channel in channels">
         <nuxt-link class="allChannels2" no-prefetch="" :to="`/channels/${channel.id}`">
         {{ channel.name }} 
-        <button class="box2" v-if="isAuthenticated" v-on:click="deleteChannel">Delete</button>
+        
         </nuxt-link>
       </p>
+      
       </ul>
+      <p></p><p></p><p></p><p></p>
+      <button class="box2" v-if="isAuthenticated" v-on:click="deleteChannels">reset all</button> 
       <div class="wrap">
         <input class="content1" v-model="textInput" v-if="isAuthenticated" placeholder="Input team name">
-        <button class="content2" v-if="isAuthenticated" v-on:click="addChannel">Create New Channel</button>   
+        <button class="content2" v-if="isAuthenticated" v-on:click="addChannel">Create New Channel</button>  
       </div>
       <p v-if="isAuthenticated" class="logout" v-on:click="logout">Logout</p> 
       
@@ -80,13 +83,19 @@ export default {
       }).then(() => {
        this.text = null
      })
-      //this.$router.go({path: this.$router.currentRoute.path, force: true})
+      this.$router.go({path: this.$router.currentRoute.path, force: true})
     },
     deleteChannel(event) {
       if (this.keyDownedForJPConversion(event)) { return }
       const channelId = this.$route.params.id
       db.collection('channels').doc(channelId).delete()
-      //this.$router.go({path: this.$router.currentRoute.path, force: false})
+      this.$router.go({path: this.$router.currentRoute.path, force: false})
+    },
+    deleteChannels(event) {
+      if (this.keyDownedForJPConversion(event)) { return }
+      const channelId = this.$route.params.id
+      db.collection('channels').doc(channelId).delete()
+      this.$router.go({path: '/', force: false})
     },
     keyDownedForJPConversion (event) {
       const codeForConversion = 229
@@ -284,7 +293,7 @@ html {
 .box2{
   float: right;
   font-size: 10px;
-  color: orange;
+  color: black;
 }
 .allChannels{
   font-size: 25px;
