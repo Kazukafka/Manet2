@@ -12,7 +12,7 @@
         
         
         </nuxt-link>
-        <a href="www.findup99.com" class="link"><button class="box2" v-if="isAuthenticated" v-on:click="deleteChannel">Delete</button></a>
+        <a href="/" class="link"><button class="box2" v-if="isAuthenticated" v-on:click="deleteChannel">Delete</button></a>
       </p>
       
       </ul>
