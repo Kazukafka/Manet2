@@ -86,7 +86,7 @@ export default {
       }).then(() => {
        this.text = null
      })
-      this.$router.go({path: this.$router.currentRoute.path, force: true})
+      //this.$router.go({path: this.$router.currentRoute.path, force: true})
     },
     deleteChannel(event) {
       if (this.keyDownedForJPConversion(event)) { return }

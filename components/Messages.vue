@@ -10,7 +10,6 @@ import { db, firebase } from '~/plugins/firebase'
 export default {
   data () {
     return {
-      mchannels: [],
       channels: []
     }
   },
