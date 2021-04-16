@@ -7,14 +7,13 @@
       <ul>
       <p v-for="channel in channels">
         <nuxt-link class="allChannels2" no-prefetch="" :to="`/channels/${channel.id}`">
-        {{ channel.name }} 
-        
+        {{ channel.name }}
         </nuxt-link>
       </p>
       
       </ul>
       <p></p><p></p><p></p><p></p>
-      <button class="box2" v-if="isAuthenticated" v-on:click="deleteChannels">reset all</button> 
+      
       <div class="wrap">
         <input class="content1" v-model="textInput" v-if="isAuthenticated" placeholder="Input team name">
         <button class="content2" v-if="isAuthenticated" v-on:click="addChannel">Create New Channel</button>  
