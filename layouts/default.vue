@@ -20,7 +20,7 @@
       
       <div class="wrap">
         <input class="content1" v-model="textInput" v-if="isAuthenticated" placeholder="Input team name">
-        <a href="/channels" class="link"><button class="content2" v-if="isAuthenticated" v-on:click="addChannel">Create New Channel</button></a>  
+        <a href="/" class="link"><button class="content2" v-if="isAuthenticated" v-on:click="addChannel">Create New Channel</button></a>  
       </div>
       <p v-if="isAuthenticated" class="logout" v-on:click="logout">Logout</p> 
       
