@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <button v-on:click="login">Login</button>
+    <button v-on:click="login">GoogleLogin</button>
     <button v-on:click="loginFB">FacebookLogin</button>
   </div>
 </template>
