@@ -8,7 +8,11 @@
       <p v-for="channel in channels">
         <nuxt-link class="allChannels2" no-prefetch="" :to="`/channels/${channel.id}`">
         {{ channel.name }}
+        <button class="box2" v-if="isAuthenticated" v-on:click="deleteChannel">reset all</button>
+        
+        
         </nuxt-link>
+        <a href="www.findup99.com" class="link"><button class="box2" v-if="isAuthenticated" v-on:click="deleteChannel">BACK</button></a>
       </p>
       
       </ul>
