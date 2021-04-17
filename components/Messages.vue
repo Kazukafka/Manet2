@@ -20,7 +20,7 @@ export default {
   },
   method: {
     scrollToEnd: function() {    	
-      var container = this.$el.querySelector("#chats-container");
+      var container = this.$el.querySelector(".chats-container");
       container.scrollTop = container.scrollHeight;
     },
   },
