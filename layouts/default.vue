@@ -8,11 +8,8 @@
       <p v-for="channel in channels">
         <nuxt-link class="allChannels2" no-prefetch="" :to="`/channels/${channel.id}`">
         {{ channel.name }}
-        
-        
-        
         </nuxt-link>
-        <a href="/" class="link"><button class="box2" v-if="isAuthenticated" v-on:click="deleteChannel">Delete</button></a>
+        <a href="/" class="link"><button class="box2" v-if="isAuthenticated" v-on:click="deleteChannel" onclick="document.getElementById('fileInput').click()">Delete</button></a>
       </p>
       
       </ul>
@@ -30,18 +27,18 @@
     </div>
     <div class="sidebar-right">
       <div class="slide" id="makeImg">
-        <img src="@/assets/ad1.png"   alt="くま">
-        <img src="@/assets/ad2.png"    alt="ねこ">
-        <img src="@/assets/ad3.png"    alt="うし">
-        <img src="@/assets/ad4.png"    alt="いぬ">
-        <img src="@/assets/ad5.png"  alt="ねずみ">
+        <img src="@/assets/ad1.png">
+        <img src="@/assets/ad2.png">
+        <img src="@/assets/ad3.png">
+        <img src="@/assets/ad4.png">
+        <img src="@/assets/ad5.png">
       </div>
       <div class="slide" id="makeImg">
-        <img src="@/assets/ad6.png"   alt="くま">
-        <img src="@/assets/ad7.png"    alt="ねこ">
-        <img src="@/assets/ad8.png"    alt="うし">
-        <img src="@/assets/ad9.png"    alt="いぬ">
-        <img src="@/assets/ad10.png"  alt="ねずみ">
+        <img src="@/assets/ad6.png">
+        <img src="@/assets/ad7.png">
+        <img src="@/assets/ad8.png">
+        <img src="@/assets/ad9.png">
+        <img src="@/assets/ad10.png">
       </div>
     </div>
     
@@ -52,6 +49,7 @@
 import { db, firebase } from '~/plugins/firebase'
 import { mapActions } from 'vuex'
 export default {
+  props: ['message'],
   data () {
     return {
       channels: []
