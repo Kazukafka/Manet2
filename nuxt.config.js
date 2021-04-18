@@ -1,5 +1,6 @@
 
 module.exports = {
+  
   mode: 'spa',
   /*
   ** Headers of the page
@@ -28,6 +29,7 @@ module.exports = {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '~plugins/vue-scrollto',
   ],
   /*
   ** Nuxt.js dev-modules

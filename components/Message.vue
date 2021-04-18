@@ -14,6 +14,14 @@
 </template>
 
 <script>
+
+var speed = 100; // スクロールのスピード（1に近いほど速く）
+var move = 5; // スクロールのなめらかさ（1に近いほどなめらかに）
+
+var x = 0;
+var y = 0;
+var nx = 0;
+var ny = 0;
 export default {
   props: ['message'],
   data() {

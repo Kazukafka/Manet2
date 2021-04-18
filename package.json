@@ -18,7 +18,9 @@
     "express": "^4.16.4",
     "firebase": "^8.3.1",
     "nuxt": "^2.15.3",
+    "vue-chat-scroll": "^1.4.0",
     "vue-infinite-loading": "^2.4.5",
+    "vue-scrollto": "^2.20.0",
     "vue-seamless-scroll": "^1.1.23"
   },
   "devDependencies": {
