@@ -1,4 +1,4 @@
-# slack-clone-app
+# Manet2(slack-clone-app)
 
 > My phenomenal Nuxt.js project
 
