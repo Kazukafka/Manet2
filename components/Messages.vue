@@ -1,15 +1,10 @@
 <template>
-
 <div>
-  <button v-on:click="myClick">click</button>
-  <header>Head</header>
   <div class="chats-container">
     <message v-for="message in messages" :message="message"/>
   </div>
   <h1></h1>
-  
 </div>
-
 </template>
 
 <script>
