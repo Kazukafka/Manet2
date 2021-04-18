@@ -1,5 +1,21 @@
 
 module.exports = {
+
+  generate: {
+    routes() {
+      return Promise.all([
+        client.getEntries({
+          content_type: process.env.CTF_BLOG_POST_TYPE_ID
+        })
+      ]).then(([ posts ]) => {
+        return [
+          ...posts.items.map(post => {
+            return { route: `posts/${post.fields.slug}`, payload: post }
+          })
+        ]
+      })
+    }
+  },
   
   mode: 'spa',
   /*
