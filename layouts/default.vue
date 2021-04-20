@@ -20,8 +20,7 @@
         <input class="content1" v-model="textInput" v-if="isAuthenticated" placeholder="Input team name">
         <a href="/" class="link"><button class="content2" v-if="isAuthenticated" v-on:click="addChannel">Create New Channel</button></a>  
       </div>
-      <button class="glog" v-on:click="login">Google Login</button>
-      <button class="flog" v-on:click="loginFB3">Facebook Login</button>
+      
       <p v-if="isAuthenticated" class="logout" v-on:click="logout">Logout</p>
       
       

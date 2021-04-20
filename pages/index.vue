@@ -1,29 +1,29 @@
 <template>
-  <div class="container">
-    <button class="glog" v-on:click="login">Google Login</button>
-    <button class="flog" v-on:click="loginFB3">Facebook Login</button>
-    <div class="box">
-    <div class="inner">
-        <div class="content">
-          <h1>Sample</h1>
-<ul class="box-list">
-  <li>
-    <script class="des1" src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-<lottie-player src="https://assets7.lottiefiles.com/packages/lf20_euceIr/group_chat_05.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop controls autoplay></lottie-player>
-  </li>
-  <li>
-  </li>
-  <li>
-  </li>
-  
-  <li>
-    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-<lottie-player src="https://assets5.lottiefiles.com/packages/lf20_7S3E2I.json"  background="transparent"  speed="1"  style="width: 300px; height: 300px;"  loop controls autoplay></lottie-player>
-  </li>
-</ul>
-        </div>
-      </div>
+<div>
+  <div class="flex_test-box">
+    <div class="flex_test-item">
+       Step1 Go to the Group
+       <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<lottie-player src="https://assets3.lottiefiles.com/packages/lf20_7ih0mucp.json"  background="transparent"  speed="1"  style="width: 150px; height: 180px;"  loop controls autoplay></lottie-player>
     </div>
+    <div class="flex_test-item">
+        Step2 Click Chatform
+        <script class="des1" src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+       <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_euceIr/group_chat_05.json"  background="transparent"  speed="1"  style="width: 150px; height: 180px;"  loop controls autoplay></lottie-player>
+    </div>
+    <div class="flex_test-item">
+        Step3 Login
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<lottie-player src="https://assets2.lottiefiles.com/packages/lf20_q5pk6p1k.json"  background="transparent"  speed="1"  style="width: 150px; height: 180px;"  loop controls autoplay></lottie-player>
+    </div>
+    <div class="flex_test-item">
+        Step4 Enjoy the group chat with Ads
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<lottie-player src="https://assets5.lottiefiles.com/packages/lf20_7S3E2I.json"  background="transparent"  speed="1"  style="width: 150px; height: 180px;"  loop controls autoplay></lottie-player>
+    </div>
+</div>
+<button class="content2G" v-on:click="login">Login with Google</button>
+    <button class="content2F" v-on:click="loginFB3">Login with Facebook</button>
 </div>
 </template>
 
@@ -108,50 +108,83 @@ export default {
 
 *{
     box-sizing: border-box;
-}
-.box-list{
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  overflow: hidden;
-}
-.box-list li{
-  float: left;
-  width: 19%;
-  margin-bottom: 1%;
-  margin-right: 1.25%;
-}
-ul li:last-child{
-  margin-right:0;
-}
-img{
-  width: 100%
+}.flex_test-box {
+    background-color: #eee;     /* 背景色指定 */
+    padding:  10px;             /* 余白指定 */
+    display: flex;              /* フレックスボックスにする */
+    flex-direction:row;         /* 要素の並び順 */
 }
 
-.box{
-    background: #ed4343;
-    display: table;
-    height: 400px;
-    text-align: center;
-    width: 100%;
-}
-.inner{
-    display: table-cell;
-    vertical-align: middle;
-}
-.content{
-    display: inline-block;
-    padding: 20px;
+.flex_test-item {
+    padding: 10px;
+    color:  #fff;               /* 文字色 */
+    margin:  10px;              /* 外側の余白 */
+    border-radius:  5px;        /* 角丸指定 */
+    width: 25%;                 /* 幅指定 */
 }
 
-.des1{
-  width:100%;
-    background:#EEE;
-    padding:15px;
-    box-sizing:border-box;
-    box-sizing:border-box;
+.flex_test-item:nth-child(1) {
+    background-color:  #2196F3; /* 背景色指定 */
 }
 
+.flex_test-item:nth-child(2) {
+    background-color:  #4CAF50; /* 背景色指定 */
+}
 
+.flex_test-item:nth-child(3) {
+    background-color: #3F51B5; /* 背景色指定 */
+}
 
+.flex_test-item:nth-child(4) {
+    background-color:  #00BCD4; /* 背景色指定 */
+}
+.flex_test-box {
+    background-color: #eee;     /* 背景色指定 */
+    padding:  10px;             /* 余白指定 */
+}
+
+.flex_test-item {
+    padding: 10px;
+    color:  #fff;               /* 文字色 */
+    margin:  10px;              /* 外側の余白 */
+    border-radius:  5px;        /* 角丸指定 */
+}
+
+.flex_test-item:nth-child(1) {
+    background-color:  #2196F3; /* 背景色指定 */
+}
+
+.flex_test-item:nth-child(2) {
+    background-color:  #4CAF50; /* 背景色指定 */
+}
+
+.flex_test-item:nth-child(3) {
+    background-color: #3F51B5; /* 背景色指定 */
+}
+
+.flex_test-item:nth-child(4) {
+    background-color:  #00BCD4; /* 背景色指定 */
+}
+
+.content2G {
+  font-size: 15px;
+  display: inline-block;
+  border-radius: 30px;
+  border: 1px solid #3b8070;
+  color: black;
+  text-decoration: none;
+  padding: 3px 9px;
+  background-color:orange;
+}
+
+.content2F {
+  background-color: blue;
+  font-size: 15px;
+  display: inline-block;
+  border-radius: 30px;
+  border: 1px solid #3b8070;
+  color: white;
+  text-decoration: none;
+  padding: 3px 9px;
+}
 </style>
