@@ -22,8 +22,10 @@
 <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_7S3E2I.json"  background="transparent"  speed="1"  style="width: 150px; height: 180px;"  loop controls autoplay></lottie-player>
     </div>
 </div>
+<div class="centre">
 <button class="content2G" v-on:click="login">Login with Google</button>
     <button class="content2F" v-on:click="loginFB3">Login with Facebook</button>
+</div>
 </div>
 </template>
 
@@ -186,5 +188,10 @@ export default {
   color: white;
   text-decoration: none;
   padding: 3px 9px;
+}
+
+.centre {
+  height: 10rem;
+  text-align: center;
 }
 </style>
