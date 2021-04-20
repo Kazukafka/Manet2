@@ -3,8 +3,9 @@
      
     <div class="sidebar">
       <router-link to="/">Home</router-link>
-      <p class="allChannels">All Channels</p>
+      <p class="allChannels">All Groups</p>
       <ul>
+        
       <p v-for="channel in channels">
         <nuxt-link class="allChannels2" no-prefetch="" :to="`/channels/${channel.id}`">
         {{ channel.name }}
@@ -19,8 +20,10 @@
         <input class="content1" v-model="textInput" v-if="isAuthenticated" placeholder="Input team name">
         <a href="/" class="link"><button class="content2" v-if="isAuthenticated" v-on:click="addChannel">Create New Channel</button></a>  
       </div>
+      <button class="glog" v-on:click="login">Google Login</button>
+      <button class="flog" v-on:click="loginFB3">Facebook Login</button>
+      <p v-if="isAuthenticated" class="logout" v-on:click="logout">Logout</p>
       
-      <p v-if="isAuthenticated" class="logout" v-on:click="logout">Logout</p> 
       
     </div>
     <div class="main-content">  
@@ -66,6 +69,30 @@ export default {
     openClick () {
       this.dialogVisible = false
     },
+    login() {
+     const provider = new firebase.auth.GoogleAuthProvider()
+     firebase.auth().signInWithPopup(provider)
+     .then((result) => {
+        const user = result.user
+        window.alert('Login OK')
+         console.log(user)
+       }).catch((error) => {
+         window.alert(error)
+         window.alert('Failed, please try again')
+       })
+   },
+   loginFB3() {
+     const provider = new firebase.auth.FacebookAuthProvider()
+     firebase.auth().signInWithPopup(provider)
+     .then((result) => {
+        const user = result.user
+        window.alert('Login OK')
+         console.log(user)
+       }).catch((error) => {
+         window.alert(error)
+         window.alert('Failed, please try again')
+       })
+   },
     logout() {
       firebase.auth().signOut()
       .then(() => {
@@ -300,5 +327,18 @@ html {
 .manet2 {  
     font-size: 25px;
     font-family: cursive; 
+}
+
+.image-container {
+ display: flex;
+ justify-content: center;
+}
+
+.glog {
+  background-color: orange;
+}
+
+.flog{
+  background-color: skyblue;
 }
 </style>

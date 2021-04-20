@@ -44,7 +44,7 @@ export default {
       })
     },
     scrollWindow() {
-      const top = 100 // ボタンを表示させたい位置
+      const top = 100
       this.scroll = chats-container.scrollY
       if (top <= this.scroll) {
         this.buttonActive = true

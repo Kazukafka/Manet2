@@ -17,7 +17,7 @@
           <img src="~/assets/google_sign_in.png" v-on:click="login"/>
         </div>
         <div class="image-container">
-          <img src="~/assets/facebook_sign_in.png" v-on:click="loginFB2"/>
+          <img src="~/assets/facebook_sign_in.png" v-on:click="loginFB3"/>
         </div>
         </el-dialog>
   </div>
@@ -116,7 +116,7 @@ export default {
         console.log(this.$store.state.user)
         this.dialogVisible = false
        }).catch((error) => {
-         window.alert('FAIL')
+         window.alert('Failed, please try again')
        })
     },
 
@@ -130,7 +130,7 @@ export default {
         console.log(this.$store.state.user)
         this.dialogVisible = false
        }).catch((error) => {
-         window.alert('FAIL')
+         window.alert('Failed, please try again')
        })
     },
     
