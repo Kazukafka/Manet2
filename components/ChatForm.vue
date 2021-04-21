@@ -126,13 +126,12 @@ export default {
      .then((result) => {
         const user = result.user
         window.alert('Login OK')
-        this.setUser(user)
-        console.log(this.$store.state.user)
-        this.dialogVisible = false
+         console.log(user)
        }).catch((error) => {
+         window.alert(error)
          window.alert('Failed, please try again')
        })
-    },
+   },
     
     
     loginFB ({ dispatch }) {
