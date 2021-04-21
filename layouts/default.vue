@@ -68,30 +68,7 @@ export default {
     openClick () {
       this.dialogVisible = false
     },
-    login() {
-     const provider = new firebase.auth.GoogleAuthProvider()
-     firebase.auth().signInWithPopup(provider)
-     .then((result) => {
-        const user = result.user
-        window.alert('Login OK')
-         console.log(user)
-       }).catch((error) => {
-         window.alert(error)
-         window.alert('Failed, please try again')
-       })
-   },
-   loginFB3() {
-     const provider = new firebase.auth.FacebookAuthProvider()
-     firebase.auth().signInWithPopup(provider)
-     .then((result) => {
-        const user = result.user
-        window.alert('Login OK')
-         console.log(user)
-       }).catch((error) => {
-         window.alert(error)
-         window.alert('Failed, please try again')
-       })
-   },
+   
     logout() {
       firebase.auth().signOut()
       .then(() => {

@@ -59,37 +59,6 @@ export default {
          window.alert('Failed, please try again')
        })
    },
-   loginFB2() {
-     const provider = new firebase.auth.FacebookAuthProvider()
-     firebase.auth().signInWithPopup(provider)
-     .then((result) => {
-        const user = result.user
-        window.alert('Login OK')
-        this.setUser(user)
-        console.log(this.$store.state.user)
-        this.dialogVisible = false
-       }).catch((error) => {
-         window.alert('FAIL')
-       })
-    },
-   loginFB ({ dispatch }) {
-  var provider = new firebase.auth.FacebookAuthProvider()
-  firebase.auth().signInWithPopup(provider).then(function (result) {
-    dispatch('checkLogin')
-    window.alert('Login OK')
-  }).catch(function (error) {
-    console.log(error)
-    window.alert('FAIL')
-  })
-},
- checkLogin ({ commit }) {
-  firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
-      commit('getData', { uid: user.uid, email: user.email })
-      commit('switchLogin')
-    }
-  })
-},
  }
 }
 </script>
@@ -111,61 +80,61 @@ export default {
 *{
     box-sizing: border-box;
 }.flex_test-box {
-    background-color: #eee;     /* 背景色指定 */
-    padding:  10px;             /* 余白指定 */
-    display: flex;              /* フレックスボックスにする */
-    flex-direction:row;         /* 要素の並び順 */
+    background-color: #eee;
+    padding:  10px;
+    display: flex;
+    flex-direction:row;
 }
 
 .flex_test-item {
     padding: 10px;
-    color:  #fff;               /* 文字色 */
-    margin:  10px;              /* 外側の余白 */
-    border-radius:  5px;        /* 角丸指定 */
-    width: 25%;                 /* 幅指定 */
+    color:  #fff;
+    margin:  10px;
+    border-radius:  5px;
+    width: 25%;
 }
 
 .flex_test-item:nth-child(1) {
-    background-color:  #2196F3; /* 背景色指定 */
+    background-color:  #2196F3;
 }
 
 .flex_test-item:nth-child(2) {
-    background-color:  #4CAF50; /* 背景色指定 */
+    background-color:  #4CAF50;
 }
 
 .flex_test-item:nth-child(3) {
-    background-color: #3F51B5; /* 背景色指定 */
+    background-color: #3F51B5;
 }
 
 .flex_test-item:nth-child(4) {
-    background-color:  #00BCD4; /* 背景色指定 */
+    background-color:  #00BCD4;
 }
 .flex_test-box {
-    background-color: #eee;     /* 背景色指定 */
-    padding:  10px;             /* 余白指定 */
+    background-color: #eee;
+    padding:  10px;
 }
 
 .flex_test-item {
     padding: 10px;
-    color:  #fff;               /* 文字色 */
-    margin:  10px;              /* 外側の余白 */
-    border-radius:  5px;        /* 角丸指定 */
+    color:  #fff; 
+    margin:  10px;
+    border-radius:  5px;
 }
 
 .flex_test-item:nth-child(1) {
-    background-color:  #2196F3; /* 背景色指定 */
+    background-color:  #2196F3;
 }
 
 .flex_test-item:nth-child(2) {
-    background-color:  #4CAF50; /* 背景色指定 */
+    background-color:  #4CAF50;
 }
 
 .flex_test-item:nth-child(3) {
-    background-color: #3F51B5; /* 背景色指定 */
+    background-color: #3F51B5;
 }
 
 .flex_test-item:nth-child(4) {
-    background-color:  #00BCD4; /* 背景色指定 */
+    background-color:  #00BCD4;
 }
 
 .content2G {

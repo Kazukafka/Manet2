@@ -132,29 +132,7 @@ export default {
          window.alert('Failed, please try again')
        })
    },
-    
-    
-    loginFB ({ dispatch }) {
-      var provider = new firebase.auth.FacebookAuthProvider()
-      firebase.auth().signInWithPopup(provider).then(function (result) {
-        const user = result.user
-        window.alert('Login OK')
-        this.setUser(user)
-        console.log(this.$store.state.user)
-        this.dialogVisible = false
-        dispatch('checkLogin')
-      }).catch(function (error) {
-        console.log(error)
-      })
-    },
-    checkLogin ({ commit }) {
-      firebase.auth().onAuthStateChanged(function (user) {
-        if (user) {
-          commit('getData', { uid: user.uid, email: user.email })
-          commit('switchLogin')
-        }
-      })
-    },
+   
   }
 }
 export const mutations = {
