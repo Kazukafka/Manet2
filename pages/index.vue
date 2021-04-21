@@ -2,7 +2,7 @@
 <div>
   <div class="flex_test-box">
     <div class="flex_test-item">
-       Step1 Go to the Group
+      Step1 Go to the Group
        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
 <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_7ih0mucp.json"  background="transparent"  speed="1"  style="width: 150px; height: 180px;"  loop controls autoplay></lottie-player>
     </div>
@@ -24,7 +24,7 @@
 </div>
 <div class="centre">
 <button class="content2G" v-on:click="login">Login with Google</button>
-    <button class="content2F" v-on:click="loginFB3">Login with Facebook</button>
+    <button class="content2F" v-on:click="FacebookLogin">Login with Facebook</button>
 </div>
 </div>
 </template>
@@ -47,7 +47,7 @@ export default {
          window.alert('Failed, please try again')
        })
    },
-   loginFB3() {
+   FacebookLogin() {
      const provider = new firebase.auth.FacebookAuthProvider()
      firebase.auth().signInWithPopup(provider)
      .then((result) => {

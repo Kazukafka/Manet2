@@ -17,7 +17,7 @@
           <img src="~/assets/google_sign_in.png" v-on:click="login"/>
         </div>
         <div class="image-container">
-          <img src="~/assets/facebook_sign_in.png" v-on:click="loginFB3"/>
+          <img src="~/assets/facebook_sign_in.png" v-on:click="FacebookLogin"/>
         </div>
         </el-dialog>
   </div>
@@ -120,7 +120,7 @@ export default {
        })
     },
 
-    loginFB2() {
+    FacebookLogin() {
      const provider = new firebase.auth.FacebookAuthProvider()
      firebase.auth().signInWithPopup(provider)
      .then((result) => {
